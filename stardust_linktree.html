@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROMISSSEE — Stardust Link Bio</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Flying Stardust Background Animation */
+        .stardust-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #ffffff;
+            border-radius: 50%;
+            animation: flyStar var(--duration) linear infinite, twinkle var(--twinkle-duration) ease-in-out infinite;
+            opacity: var(--base-opacity);
+        }
+
+        @keyframes flyStar {
+            0% {
+                transform: translateY(105vh) translateX(0px);
+            }
+            100% {
+                transform: translateY(-5vh) translateX(var(--drift));
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: var(--base-opacity);
+            }
+            50% {
+                opacity: calc(var(--base-opacity) + 0.5);
+            }
+        }
+
+        /* Staggered Load Animations */
+        @keyframes slideUpFade {
+            0% {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-load {
+            opacity: 0;
+            animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* Card Hover Inversion */
+        .social-card {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .social-card:hover {
+            background-color: #ffffff;
+            color: #000000;
+            transform: scale(1.03);
+            border-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+        }
+        .social-card:hover svg {
+            stroke: #000000;
+        }
+        .social-card:hover .text-muted {
+            color: #666666;
+        }
+
+        /* Avatar Glow */
+        .avatar-glow {
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen px-4 py-12 relative">
+
+    <!-- Flying Stardust Background Container -->
+    <div class="stardust-container" id="stardust"></div>
+
+    <!-- Main Card Container -->
+    <main class="relative z-10 w-full max-w-md mx-auto flex flex-col items-center text-center">
+
+        <!-- Header Section: Avatar, Nickname, Bio -->
+        <div class="flex flex-col items-center mb-8 w-full">
+            <!-- Avatar -->
+            <div class="relative w-24 h-24 mb-5 rounded-full p-1 border border-white/20 avatar-glow animate-load delay-1">
+                <div class="w-full h-full rounded-full overflow-hidden bg-[#111111] flex items-center justify-center">
+                    <span class="font-display text-2xl font-bold tracking-widest text-white">P</span>
+                </div>
+            </div>
+
+            <!-- Nickname -->
+            <h1 class="font-display text-2xl sm:text-3xl font-bold tracking-wider text-white mb-2 animate-load delay-2">
+                PROMISSSEE
+            </h1>
+
+            <!-- Bio / Slogan -->
+            <p class="text-sm text-[#A1A1AA] tracking-wide font-light max-w-xs animate-load delay-3">
+                digital universe &middot; art & sound
+            </p>
+        </div>
+
+        <!-- Links Stack -->
+        <div class="w-full flex flex-col gap-4 mb-12">
+
+            <!-- Telegram Link -->
+            <a href="https://t.me/promisssee" target="_blank" rel="noopener noreferrer"
+               class="social-card animate-load delay-3 w-full bg-[#0A0A0A] border border-white/10 rounded-2xl p-4 flex items-center justify-between text-white group cursor-pointer">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center transition-colors group-hover:bg-black/5">
+                        <!-- Telegram Paper Plane Icon -->
+                        <svg class="w-5 h-5 text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 2L11 13"></path>
+                            <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <div class="font-display font-semibold text-sm tracking-wide">Telegram</div>
+                        <div class="text-xs text-[#A1A1AA] text-muted tracking-wider">@promisssee</div>
+                    </div>
+                </div>
+                <svg class="w-5 h-5 text-[#A1A1AA] text-muted transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+
+            <!-- TikTok Link -->
+            <a href="https://tiktok.com/@weirrdwrilp" target="_blank" rel="noopener noreferrer"
+               class="social-card animate-load delay-4 w-full bg-[#0A0A0A] border border-white/10 rounded-2xl p-4 flex items-center justify-between text-white group cursor-pointer">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center transition-colors group-hover:bg-black/5">
+                        <!-- TikTok Note Icon -->
+                        <svg class="w-5 h-5 text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <div class="font-display font-semibold text-sm tracking-wide">TikTok</div>
+                        <div class="text-xs text-[#A1A1AA] text-muted tracking-wider">@weirrdwrilp</div>
+                    </div>
+                </div>
+                <svg class="w-5 h-5 text-[#A1A1AA] text-muted transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+
+            <!-- SoundCloud Link -->
+            <a href="https://on.soundcloud.com/fdZJDmFWjgro9A28qd" target="_blank" rel="noopener noreferrer"
+               class="social-card animate-load delay-5 w-full bg-[#0A0A0A] border border-white/10 rounded-2xl p-4 flex items-center justify-between text-white group cursor-pointer">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center transition-colors group-hover:bg-black/5">
+                        <!-- SoundCloud Wave Icon -->
+                        <svg class="w-5 h-5 text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 16h2v-4H2v4zm4-6h2v10H6V10zm4-4h2v14h-2V6zm4 2h2v12h-2V8zm4 3h2v9h-2v-9zm4 2h2v7h-2v-7z"/>
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <div class="font-display font-semibold text-sm tracking-wide">SoundCloud</div>
+                        <div class="text-xs text-[#A1A1AA] text-muted tracking-wider">listen to sound</div>
+                    </div>
+                </div>
+                <svg class="w-5 h-5 text-[#A1A1AA] text-muted transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="animate-load delay-5 text-center">
+            <p class="text-xs text-[#A1A1AA] tracking-[0.2em] uppercase font-light">
+                made with stardust &bull; &copy; 2026
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- Script to generate dynamic flying stardust background -->
+    <script>
+        const stardustContainer = document.getElementById('stardust');
+        const starCount = 75;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+
+            // Random horizontal positioning
+            const posX = Math.random() * 100;
+
+            // Random size between 1px and 3.5px
+            const size = Math.random() * 2.5 + 1;
+
+            // Random opacity and animation timings for organic floating
+            const baseOpacity = Math.random() * 0.6 + 0.2;
+            const flyDuration = Math.random() * 12 + 8; // 8s to 20s per cycle
+            const twinkleDuration = Math.random() * 3 + 2; // 2s to 5s twinkle
+            const drift = (Math.random() - 0.5) * 150 + 'px'; // slight horizontal drift
+
+            star.style.left = `${posX}%`;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.setProperty('--base-opacity', baseOpacity);
+            star.style.setProperty('--duration', `${flyDuration}s`);
+            star.style.setProperty('--twinkle-duration', `${twinkleDuration}s`);
+            star.style.setProperty('--drift', drift);
+
+            // Stagger initial animations so they don't all start at bottom
+            star.style.animationDelay = `-${Math.random() * flyDuration}s, -${Math.random() * twinkleDuration}s`;
+
+            stardustContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
